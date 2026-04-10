@@ -1,14 +1,19 @@
 version: '3.4'
 
 services:
-  msdocspythonflaskazurecontainerappdev:
-    image: msdocspythonflaskazurecontainerappdev
+  api:
+    image: restrev-api-debug
     build:
-      context: .
-      dockerfile: ./Dockerfile
-    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 -m flask run --no-debugger --no-reload --host 0.0.0.0 --port 5000"]
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
-      - 5000:5000
-      - 5678:5678
-    environment:
-      - FLASK_APP=app.py
+      - '5000:5000'
+      - '5678:5678'
+    env_file:
+      - ./backend/.env
+    command:
+      [
+        'sh',
+        '-c',
+        'pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 -m flask run --no-debugger --no-reload --host 0.0.0.0 --port 5000',
+      ]

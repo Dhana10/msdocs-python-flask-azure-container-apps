@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Restaurant Details{% endblock %}
 {% block content %}
-  <h1>{{ restaurant.name }}</h1> 
+  <h1>{{ restaurant.name }}</h1>
   <div class="row">
       <div class="col-md-2 fw-bold">Street address:</div>
       <div class="col">{{ restaurant.street_address }}</div>
   </div>
   <div class="row">
       <div class="col-md-2 fw-bold">Description:</div>
-      <div class="col">{{ restaurant.description }}</div>                
+      <div class="col">{{ restaurant.description }}</div>
   </div>
   <div class="row">
       <div class="col-md-2 fw-bold">Rating:</div>
-      <div class="col"></div>                
+      <div class="col"></div>
   </div>
 
   <h4 class="mt-5">Reviews</h4>
@@ -23,7 +23,6 @@
       </button>
   </p>
 
-<!-- Button trigger modal -->
     {% if reviews %}
         <table class="table">
             <thead>
@@ -49,7 +48,6 @@
         <p>No reviews of this restaurant yet.</p>
     {% endif %}
 
-    <!-- Modal -->
     <div class="modal fade" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -61,7 +59,7 @@
 
               <div class="modal-body">
 
-                <div class="mb-3">                        
+                <div class="mb-3">
                     <label for="user_name" class="form-label fw-bold">Your name</label>
                     <input type="text" class="form-control" id="user_name" name="user_name">
                   </div>
@@ -82,11 +80,11 @@
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="rating" id="rating4" value="4">
-                        <label class="form-check-label" for="rating3">4</label>
+                        <label class="form-check-label" for="rating4">4</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="rating" id="rating5" value="5">
-                        <label class="form-check-label" for="rating3">5</label>
+                        <label class="form-check-label" for="rating5">5</label>
                       </div>
                   </div>
                   <div class="mb-3">

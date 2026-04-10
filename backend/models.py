@@ -1,9 +1,9 @@
 from app import db
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import declarative_base, validates
 
-# declarative base class
 Base = declarative_base()
+
 
 class Restaurant(db.Model):
     __tablename__ = 'restaurant'
@@ -11,13 +11,23 @@ class Restaurant(db.Model):
     name = Column(String(50))
     street_address = Column(String(50))
     description = Column(String(250))
+
     def __str__(self):
         return self.name
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'street_address': self.street_address or '',
+            'description': self.description or '',
+        }
+
 
 class Review(db.Model):
     __tablename__ = 'review'
     id = Column(Integer, primary_key=True)
-    restaurant = Column(Integer, ForeignKey('restaurant.id', ondelete="CASCADE"))
+    restaurant = Column(Integer, ForeignKey('restaurant.id', ondelete='CASCADE'))
     user_name = Column(String(30))
     rating = Column(Integer)
     review_text = Column(String(500))
@@ -29,4 +39,14 @@ class Review(db.Model):
         return value
 
     def __str__(self):
-        return self.restaurant.name + " (" + self.review_date.strftime("%x") +")"
+        return f'review {self.id}'
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'restaurant_id': self.restaurant,
+            'user_name': self.user_name,
+            'rating': self.rating,
+            'review_text': self.review_text or '',
+            'review_date': self.review_date.isoformat() if self.review_date else None,
+        }

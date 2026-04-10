@@ -1,10 +1,11 @@
 version: '3.4'
 
 services:
-  msdocspythonflaskazurecontainerappdev:
-    image: msdocspythonflaskazurecontainerappdev
+  api:
     build:
-      context: .
-      dockerfile: ./Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
-      - 5000:5000
+      - '5000:5000'
+    env_file:
+      - ./backend/.env

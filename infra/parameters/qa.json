@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {
+      "value": "qa"
+    },
+    "projectSlug": {
+      "value": "restrev"
+    },
+    "acrResourceGroupName": {
+      "value": "rg-restrev-shared"
+    },
+    "acrName": {
+      "value": "CHANGE_ME_UNIQUE_ACR"
+    },
+    "containerImage": {
+      "value": "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
+    },
+    "postgresAdminLogin": {
+      "value": "pgadmin"
+    },
+    "corsOrigins": {
+      "value": ""
+    },
+    "databaseName": {
+      "value": "restaurants_reviews"
+    }
+  }
+}
